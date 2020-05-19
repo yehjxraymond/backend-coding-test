@@ -4,8 +4,8 @@ import app from "./app";
 const port = 8010;
 
 const start = async () => {
-  const db = await initializeDb();
-  await app(db).listen(port);
+  await initializeDb();
+  await app().listen(port);
   console.log(`App started and listening on port ${port}`);
 };
 

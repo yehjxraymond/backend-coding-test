@@ -20,7 +20,6 @@ const DATABASE_SCHEMA = `
 const serialize = (): Promise<void> => new Promise(resolve => db.serialize(resolve));
 
 export const all = (queryString: string, params: any = []): Promise<any> => {
-  console.log(queryString, params);
   return new Promise((resolve, reject) =>
     db.all(queryString, params, (error: Error, rows: any) => {
       if (error) return reject(error);
