@@ -1,0 +1,60 @@
+{
+  "name": "backend-coding-test",
+  "version": "1.0.0",
+  "description": "Backend coding test",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "author": {
+    "name": "Raymond Yeh",
+    "email": "ray@geek.sg",
+    "url": "https://geek.sg"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "start": "node dist/index.js",
+    "ts-node": "ts-node src/index.ts",
+    "dev": "nodemon --watch src -e js,ts --exec \"npm run ts-node\"",
+    "test": "mocha --require ts-node/register --watch-files src src/**/*.test.ts",
+    "test:watch": "npm run test -- --watch",
+    "test:integration": "mocha --require ts-node/register test",
+    "coverage": "npm test -- --coverage",
+    "lint": "eslint . --ext js,ts,tsx",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.ts,src/**/*.test.ts -x .js,.ts,.tsx"
+  },
+  "types": "dist/ts",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "sqlite3": "4.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.7.7",
+    "@babel/core": "7.7.7",
+    "@babel/plugin-proposal-class-properties": "7.7.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "7.7.5",
+    "@babel/preset-env": "7.7.7",
+    "@babel/preset-typescript": "7.7.7",
+    "@types/mocha": "7.0.2",
+    "@types/node": "14.0.1",
+    "@typescript-eslint/eslint-plugin": "2.14.0",
+    "@typescript-eslint/parser": "2.14.0",
+    "babel-eslint": "10.0.3",
+    "babel-register": "6.26.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-import": "2.19.1",
+    "eslint-plugin-prettier": "3.1.2",
+    "mocha": "7.1.2",
+    "nodemon": "2.0.4",
+    "prettier": "1.19.1",
+    "supertest": "4.0.2",
+    "ts-node": "8.10.1",
+    "typescript": "3.7.4"
+  }
+}
