@@ -1,4 +1,4 @@
-import { verbose } from "sqlite3";
+import { verbose, RunResult } from "sqlite3";
 const sqlite3 = verbose();
 
 const db = new sqlite3.Database(":memory:");
@@ -18,16 +18,28 @@ const DATABASE_SCHEMA = `
 `;
 
 const serialize = (): Promise<void> => new Promise(resolve => db.serialize(resolve));
-const migrate = () =>
-  new Promise((resolve, reject) =>
-    db.run(DATABASE_SCHEMA, (result: any, error: any) => {
+
+export const all = (queryString: string, params: any = []): Promise<any> => {
+  console.log(queryString, params);
+  return new Promise((resolve, reject) =>
+    db.all(queryString, params, (error: Error, rows: any) => {
       if (error) return reject(error);
-      resolve(result);
+      resolve(rows);
     })
   );
+};
+
+export const run = (queryString: string, params: any = []): Promise<RunResult> => {
+  return new Promise((resolve, reject) =>
+    db.run(queryString, params, function(error: Error) {
+      if (error) return reject(error);
+      resolve(this);
+    })
+  );
+};
 
 export const initializeDb = async () => {
   await serialize();
-  await migrate();
+  await run(DATABASE_SCHEMA);
   return db;
 };

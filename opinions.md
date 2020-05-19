@@ -19,3 +19,15 @@ Finally, load test should be kept separately from the integration or unit test a
 `npm run test` to run unit test
 `npm run test:watch` to run unit test in watch mode
 `npm run test:integration` to run integration test
+
+## Handler Boundary
+
+With a handler boundary to handle `res.send`, depending if the handler returns a result in a successful call or throws an error during an unsuccessful call, will allow developers writing functions to focus on the matter at hand. That is to implement the function correctly without concerns about the request/response layer of the application.
+
+Compared to previous implementations, we can now throw an error immediately to terminate the function flow and there will be no risk of not returning the function after res.send, causing subsequent statements to execute.
+
+## DB as a Service
+
+The DB object does not have to be passed around from the initialization stage to the handler functions. Rather, it can be exposed as a service to the different handlers directly without being passed around as an argument.
+
+One may argue that testing will be easier when DB is passed in as an object using dependency injection, but with mocks, the same can be achieved easily.
