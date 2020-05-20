@@ -14,3 +14,9 @@ jobs:
       - run:
           name: build
           command: npm run build
+      - run:
+          name: unit-test
+          command: npm run test
+      - run:
+          name: integration-test
+          command: npm run test:integration
