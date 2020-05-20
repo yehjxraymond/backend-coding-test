@@ -41,6 +41,24 @@ If given the ability to choose the test runner, I will pretty much prefer Jest a
 - only changed files since last commit
 - regex filter on files to run
 
+## Git Hooks
+
+Git hooks are great way to enforce certain test or rules to pass before a commit is pushed (in the case of pre-push). However, there are some fundamental problems when trying to use it for an entire team rather than for automation at the individual level.
+
+Firstly, git hooks are poorly designed for sharing (describe in https://stackoverflow.com/questions/427207/can-git-hook-scripts-be-managed-along-with-the-repository). It does not work out of the box for new developers. For something that works better out of box for new joiners, it will be best to setup husky instead.
+
+In our case, all developers in the team has to setup with the following command:
+
+```sh
+git config core.hooksPath .githooks
+```
+
+Secondly, having such hooks may make the team less agile if most of these rules are enforced at the push level. Ideally, you will want to allow developers to push half baked code into their separate branch. If the CI has been setup with per-branch deployment, this will essentially allow the developer to share the changes with other developers or product owner without the fuss of trying to make everything right at once. I wrote about this in detail about the importance of tooling and allowing developer to make mistakes that are not costly in this post: https://geek.sg/blog/agility-under-uncertainty.
+
+In short, my stance is to have a script that allow a developer to run all the diagnostics, in this case the implementation of `npm run pre-push` should suffice.
+
+A CI that blocks merging to master when test does not pass should suffice. To push developers further, implementing quality gates with SonarQube will be the cherry on top.
+
 ## SonarQube
 
 ## Code as Documentation
