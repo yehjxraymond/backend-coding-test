@@ -23,7 +23,10 @@ const serialize = (): Promise<void> => new Promise(resolve => db.serialize(resol
 export const all = (queryString: string, params: any = []): Promise<any> => {
   return new Promise((resolve, reject) =>
     db.all(queryString, params, (error: Error, rows: any) => {
-      if (error) return reject(error);
+      if (error) {
+        reject(error);
+        return;
+      }
       resolve(rows);
     })
   );
@@ -32,7 +35,10 @@ export const all = (queryString: string, params: any = []): Promise<any> => {
 export const run = (queryString: string, params: any = []): Promise<RunResult> => {
   return new Promise((resolve, reject) =>
     db.run(queryString, params, function runCallback(error: Error) {
-      if (error) return reject(error);
+      if (error) {
+        reject(error);
+        return;
+      }
       resolve(this);
     })
   );
