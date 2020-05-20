@@ -13,6 +13,7 @@
     "noUnusedParameters": true,
     "stripInternal": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   }
 }

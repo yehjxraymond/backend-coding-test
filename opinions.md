@@ -34,7 +34,7 @@ One may argue that testing will be easier when DB is passed in as an object usin
 
 ## Test setup
 
-Mocha + NYC + Chai = Jest
+Mocha + NYC + Chai + Sinon = Jest
 
 If given the ability to choose the test runner, I will pretty much prefer Jest as it requires very little setup. Aside from that it has expect and code coverage out of the box. The cherry on top will be it's CLI which allows a developer to run various subset of tests, for instance:
 
