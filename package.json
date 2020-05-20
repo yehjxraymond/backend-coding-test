@@ -28,7 +28,9 @@
   },
   "types": "dist/ts",
   "dependencies": {
+    "@types/chai-as-promised": "7.1.2",
     "body-parser": "1.19.0",
+    "chai-as-promised": "7.1.1",
     "express": "4.17.1",
     "http-errors": "1.7.3",
     "sqlite3": "4.2.0",
