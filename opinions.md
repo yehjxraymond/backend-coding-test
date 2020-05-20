@@ -41,6 +41,12 @@ If given the ability to choose the test runner, I will pretty much prefer Jest a
 - only changed files since last commit
 - regex filter on files to run
 
+## Automatic input validation message
+
+Looking at the endpoint we can see how verbose the validation can get. Using hapi's Joi framework for validation, we can simply create the schema for the object and allow the assert method to throw or the validator to return the error message.
+
+This is especially useful considering that developers tend to copy and paste error messages, as shown in the base code provided. These erroneous error message won't be as useful if they are not reflective of the problem at hand.
+
 ## SonarQube
 
 ## Code as Documentation
