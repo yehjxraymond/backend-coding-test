@@ -1,7 +1,7 @@
-import { handlerBoundary } from "../handlerBoundary";
 import createHttpError from "http-errors";
-import { all } from "../../database";
 import { Request } from "express";
+import { handlerBoundary } from "../handlerBoundary";
+import { all } from "../../database";
 
 export const getRideById = async (req: Request) => {
   const rides = await all("SELECT * FROM Rides WHERE rideID=?", [req.params.id]);

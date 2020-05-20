@@ -1,6 +1,6 @@
-import { handlerBoundary } from "../handlerBoundary";
 import { Request } from "express";
 import createHttpError from "http-errors";
+import { handlerBoundary } from "../handlerBoundary";
 import { run, all } from "../../database";
 
 export const createRide = async (req: Request) => {
