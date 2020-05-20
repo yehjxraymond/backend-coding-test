@@ -1,5 +1,6 @@
 import { Handler, Request, Response, NextFunction } from "express";
 import { HttpError } from "http-errors";
+import { logger } from "../../logger";
 
 export const handlerBoundary = (handler: Handler) => async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -14,15 +15,7 @@ export const handlerBoundary = (handler: Handler) => async (req: Request, res: R
     const expected = !!(thrownError.statusCode && thrownError.message);
     const exposed = thrownError.expose || false;
 
-    console.error(
-      JSON.stringify({
-        name,
-        message,
-        exposed,
-        stack,
-        expected
-      })
-    );
+    logger.error({ name, message, exposed, stack, expected });
 
     // Returning Internal Server error if error is not thrown by us
     // For known errors, we send 400 and error message if error message is to be exposed
