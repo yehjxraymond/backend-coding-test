@@ -31,3 +31,18 @@ Compared to previous implementations, we can now throw an error immediately to t
 The DB object does not have to be passed around from the initialization stage to the handler functions. Rather, it can be exposed as a service to the different handlers directly without being passed around as an argument.
 
 One may argue that testing will be easier when DB is passed in as an object using dependency injection, but with mocks, the same can be achieved easily.
+
+## Test setup
+
+Mocha + NYC + Chai = Jest
+
+If given the ability to choose the test runner, I will pretty much prefer Jest as it requires very little setup. Aside from that it has expect and code coverage out of the box. The cherry on top will be it's CLI which allows a developer to run various subset of tests, for instance:
+
+- only changed files since last commit
+- regex filter on files to run
+
+## SonarQube
+
+## Code as Documentation
+
+## Load Testing

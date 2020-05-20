@@ -1,4 +1,5 @@
 import { verbose, RunResult } from "sqlite3";
+
 const sqlite3 = verbose();
 
 const db = new sqlite3.Database(":memory:");
@@ -30,7 +31,7 @@ export const all = (queryString: string, params: any = []): Promise<any> => {
 
 export const run = (queryString: string, params: any = []): Promise<RunResult> => {
   return new Promise((resolve, reject) =>
-    db.run(queryString, params, function(error: Error) {
+    db.run(queryString, params, function runCallback(error: Error) {
       if (error) return reject(error);
       resolve(this);
     })
