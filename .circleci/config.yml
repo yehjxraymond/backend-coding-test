@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.0
 jobs:
   build:
     docker:
@@ -21,8 +23,6 @@ jobs:
           name: integration-test
           command: npm run test:integration
       - sonarcloud/scan
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.0
 workflows:
   main:
     jobs:
