@@ -20,6 +20,13 @@ jobs:
       - run:
           name: integration-test
           command: npm run test:integration
-      - sonarcloud/scan
+      - run:
+          name: sonarqube
+          command: sonarcloud/scan
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.0
+workflows:
+  main:
+    jobs:
+      - build:
+          context: sonarcloud
