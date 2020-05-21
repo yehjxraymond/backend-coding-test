@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.0
 jobs:
   build:
     docker:
@@ -16,7 +18,13 @@ jobs:
           command: npm run build
       - run:
           name: unit-test
-          command: npm run test
+          command: npm run test:coverage
       - run:
           name: integration-test
           command: npm run test:integration
+      - sonarcloud/scan
+workflows:
+  main:
+    jobs:
+      - build:
+          context: sonarcloud

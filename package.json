@@ -20,7 +20,7 @@
     "test": "mocha --require ts-node/register --watch-files src src/**/*.test.ts",
     "test:watch": "npm run test -- --watch",
     "test:integration": "mocha --require ts-node/register test/**/*.test.ts",
-    "test:coverage": "nyc mocha --require ts-node/register src/**/*.test.ts",
+    "test:coverage": "nyc --reporter=lcov --reporter=html mocha --require ts-node/register src/**/*.test.ts",
     "lint": "eslint . --ext js,ts,tsx",
     "lint:fix": "npm run lint -- --fix",
     "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.ts,src/**/*.test.ts -x .js,.ts,.tsx",

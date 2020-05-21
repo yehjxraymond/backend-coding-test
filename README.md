@@ -1,5 +1,11 @@
 # Coding Exercise
 
+[![CircleCI](https://circleci.com/gh/yehjxraymond/backend-coding-test.svg?style=svg)](https://circleci.com/gh/yehjxraymond/backend-coding-test)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yehjxraymond_backend-coding-test&metric=alert_status)](https://sonarcloud.io/dashboard?id=yehjxraymond_backend-coding-test) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=yehjxraymond_backend-coding-test&metric=coverage)](https://sonarcloud.io/dashboard?id=yehjxraymond_backend-coding-test)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=yehjxraymond_backend-coding-test&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=yehjxraymond_backend-coding-test) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=yehjxraymond_backend-coding-test&metric=security_rating)](https://sonarcloud.io/dashboard?id=yehjxraymond_backend-coding-test) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=yehjxraymond_backend-coding-test&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=yehjxraymond_backend-coding-test)
+
 ## Setup
 
 1. Create a new repository in your own github profile named `backend-coding-test` and commit the contents of this folder

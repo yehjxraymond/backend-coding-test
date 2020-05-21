@@ -65,6 +65,10 @@ For this reason, I've changed all the representations to camelCase considering t
 
 ## SonarQube
 
+SonarQube has been configured for this project to show how the team can use it to perform quality gate enforcement before final merge to master branch.
+
+The analysis is available publicly and can be accessed at https://sonarcloud.io/dashboard?id=yehjxraymond_backend-coding-test
+
 ## Code as Documentation
 
 ## Load Testing
