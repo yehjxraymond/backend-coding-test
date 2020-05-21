@@ -1,15 +1,20 @@
 import { expect, use } from "chai";
 import chaiAsPromised from "chai-as-promised";
-import { stub } from "sinon";
+import sinon, { stub, SinonStub } from "sinon";
 import * as database from "../../database";
 import { getRides } from "./getRides";
 import rides from "../../../fixtures/rides.json";
 
 use(chaiAsPromised);
 
-const allStub = stub(database, "all");
-
 describe("getRides", () => {
+  let allStub: SinonStub<any>;
+  before(() => {
+    allStub = stub(database, "all");
+  });
+  after(() => {
+    sinon.restore();
+  });
   beforeEach(() => {
     allStub.reset();
   });

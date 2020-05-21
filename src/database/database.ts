@@ -20,7 +20,7 @@ const DATABASE_SCHEMA = `
 
 const serialize = (): Promise<void> => new Promise(resolve => db.serialize(resolve));
 
-export const all = (queryString: string, params: any = []): Promise<any> => {
+export function all<T>(queryString: string, params: any = []): Promise<T> {
   return new Promise((resolve, reject) =>
     db.all(queryString, params, (error: Error, rows: any) => {
       if (error) {
@@ -30,7 +30,7 @@ export const all = (queryString: string, params: any = []): Promise<any> => {
       resolve(rows);
     })
   );
-};
+}
 
 export const run = (queryString: string, params: any = []): Promise<RunResult> => {
   return new Promise((resolve, reject) =>

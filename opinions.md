@@ -34,18 +34,34 @@ One may argue that testing will be easier when DB is passed in as an object usin
 
 ## Test setup
 
-Mocha + NYC + Chai + Sinon = Jest
+Mocha + NYC + Chai + Chai-as-expected + Sinon = Jest
 
 If given the ability to choose the test runner, I will pretty much prefer Jest as it requires very little setup. Aside from that it has expect and code coverage out of the box. The cherry on top will be it's CLI which allows a developer to run various subset of tests, for instance:
 
 - only changed files since last commit
 - regex filter on files to run
 
+Considering that the tools doesn't have high cohesion with one another, it results in high setup cost, or fats, that is involved in writing test. This is one way to make developers hate to write tests.
+
+One such example is when doing basic stubbing, one has to:
+
+- setup chai
+- setup stub
+- teardown sinon sandbox
+
+If the developer forgets to run the test in describe scope, the one test file might affect the results of another test file.
+
 ## Automatic input validation message
 
 Looking at the endpoint we can see how verbose the validation can get. Using hapi's Joi framework for validation, we can simply create the schema for the object and allow the assert method to throw or the validator to return the error message.
 
 This is especially useful considering that developers tend to copy and paste error messages, as shown in the base code provided. These erroneous error message won't be as useful if they are not reflective of the problem at hand.
+
+## Inconsistent client-side data representation
+
+When POST-ing a ride information, the keys for the ride information is using underscores, when the server returns the value, it is using camelCase. This is an example of a poorly developed API. The API forms the contract between the frontend and backend and must be standardized before the first line of code is written on either ends. Again I've wrote about this in my blog on Agility Under Uncertainty.
+
+For this reason, I've changed all the representations to camelCase considering that the database is already storing it in camelCase and the frontend developer is likely a javascript developer as well (Python developers will likely prefer camel case on the other hand).
 
 ## SonarQube
 
