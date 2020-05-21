@@ -5,7 +5,11 @@ import { logger } from "../../logger";
 export const handlerBoundary = (handler: Handler) => async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await handler(req, res, next);
-    res.send(result);
+    if (result) {
+      res.send(result);
+    } else {
+      res.send();
+    }
   } catch (err) {
     const thrownError = err as Partial<HttpError>;
     const { name, message, stack, statusCode, error_code } = thrownError;
@@ -26,13 +30,14 @@ export const handlerBoundary = (handler: Handler) => async (req: Request, res: R
         break;
       case expected && !exposed:
         res.status(statusCode || 400);
-        res.send();
+        res.send({
+          error_code: "SERVER_ERROR"
+        });
         break;
       default:
         res.status(statusCode || 500);
         res.send({
-          error_code: "SERVER_ERROR",
-          message: "Unknown error"
+          error_code: "SERVER_ERROR"
         });
     }
   }
