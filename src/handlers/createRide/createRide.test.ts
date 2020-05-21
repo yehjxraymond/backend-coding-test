@@ -39,6 +39,11 @@ describe("createRide", () => {
     db.run.resolves({ lastID: 1337 } as any);
     db.all.resolves([rideEntry]);
     const res = await createRide({ body: validInput } as any);
+    expect(db.all.args[0]).deep.equal(["SELECT * FROM Rides WHERE rideID = ?", 1337]);
+    expect(db.run.args[0]).deep.equal([
+      "INSERT INTO Rides(startLat, startLong, endLat, endLong, riderName, driverName, driverVehicle) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [20, 100, 30, -110, "foo", "bar", "cow"]
+    ]);
     expect(res).deep.equal([rideEntry]);
   });
 });
