@@ -1,8 +1,8 @@
 import request from "supertest";
 import { expect } from "chai";
 import { pick } from "lodash";
-import sinon, { stub } from "sinon";
-import { logger } from "../src/logger";
+// import sinon, { stub } from "sinon";
+// import { logger } from "../src/logger";
 import { initializeDb, flushDb } from "../src/database";
 import app from "../src/app";
 
@@ -35,11 +35,11 @@ const insertRecord = async () => {
 describe("API tests", () => {
   before(async () => {
     await initializeDb();
-    stub(logger); // Silence logger
+    // stub(logger); // Silence logger
   });
-  after(() => {
-    sinon.restore();
-  });
+  // after(() => {
+  //   sinon.restore();
+  // });
   beforeEach(async () => {
     await flushDb();
   });
@@ -189,7 +189,27 @@ describe("API tests", () => {
           });
         });
     });
-    xit("should not be vulnerable to SQL injection (body)", () => {});
+    it.only("should not be vulnerable to SQL injection (body)", async () => {
+      // INSERT INTO Rides(startLat, startLong, endLat, endLong, riderName, driverName,
+      // driverVehicle) VALUES (0, 0, 0, 0, "a", "a", "a"), (1, 1, 1, 1, "b", "b", "b");
+
+      const injection = {
+        ...sampleEntry,
+        driverVehicle: `a"), (1, 1, 1, 1, "b", "b", "b`
+      };
+      await request(express)
+        .post("/rides")
+        .send(injection)
+        .expect("Content-Type", /application\/json/);
+      await request(express)
+        .get("/rides")
+        .expect("Content-Type", /application\/json/)
+        .expect(200)
+        .expect(res => {
+          const { body } = res;
+          expect(body.length).equal(1);
+        });
+    });
     it("should create a record successfully", async () => {
       await request(express)
         .post("/rides")
