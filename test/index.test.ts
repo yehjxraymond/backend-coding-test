@@ -160,7 +160,19 @@ describe("API tests", () => {
           });
         });
     });
-    xit("should not be vulnerable to SQL injection ({id})", () => {});
+    it("should not be vulnerable to SQL injection ({id})", async () => {
+      // SELECT * FROM Rides WHERE rideID=1 or 1=1
+      const offendingQuery = "1 or 1=1";
+      await insertRecord();
+      await insertRecord();
+      await request(express)
+        .get(`/rides/${offendingQuery}`)
+        .expect("Content-Type", /application\/json/)
+        .expect(res => {
+          expect(res.body).deep.equal({ error_code: "SERVER_ERROR" });
+        })
+        .expect(500);
+    });
   });
 
   describe("POST /rides", () => {
