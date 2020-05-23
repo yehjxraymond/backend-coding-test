@@ -3,9 +3,8 @@ import { expect } from "chai";
 import { pick } from "lodash";
 import sinon, { stub } from "sinon";
 import { logger } from "../src/logger";
-import { initializeDb } from "../src/database";
+import { initializeDb, flushDb } from "../src/database";
 import app from "../src/app";
-import { flushDb } from "../src/database";
 
 const express = app();
 
