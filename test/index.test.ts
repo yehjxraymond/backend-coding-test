@@ -98,7 +98,6 @@ describe("API tests", () => {
           expect(body.length).equal(5);
         });
     });
-    xit("should not be vulnerable to SQL injection (page)", () => {});
   });
 
   describe("GET /rides/{id}", () => {
@@ -189,10 +188,9 @@ describe("API tests", () => {
           });
         });
     });
-    it.only("should not be vulnerable to SQL injection (body)", async () => {
+    it("should not be vulnerable to SQL injection (body)", async () => {
       // INSERT INTO Rides(startLat, startLong, endLat, endLong, riderName, driverName,
       // driverVehicle) VALUES (0, 0, 0, 0, "a", "a", "a"), (1, 1, 1, 1, "b", "b", "b");
-
       const injection = {
         ...sampleEntry,
         driverVehicle: `a"), (1, 1, 1, 1, "b", "b", "b`
