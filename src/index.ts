@@ -1,8 +1,7 @@
 import { initializeDb } from "./database";
 import app from "./app";
 import { logger } from "./logger";
-
-const port = 8010;
+import { port } from "./config";
 
 const start = async () => {
   await initializeDb();
