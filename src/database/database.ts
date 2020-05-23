@@ -1,6 +1,6 @@
 import { RunResult } from "sqlite3";
 import { db } from "./instance";
-import { CREATE_TABLE_QUERY } from "./queries";
+import { CREATE_TABLE_QUERY, FLUSH_TABLE_QUERY } from "./queries";
 
 export function all<T>(queryString: string, params: any = []): Promise<T> {
   return new Promise((resolve, reject) =>
@@ -27,6 +27,8 @@ export const run = (queryString: string, params: any = []): Promise<RunResult> =
 };
 
 const serialize = (): Promise<void> => new Promise(resolve => db.serialize(resolve));
+
+export const flushDb = () => run(FLUSH_TABLE_QUERY);
 
 export const initializeDb = async () => {
   await serialize();

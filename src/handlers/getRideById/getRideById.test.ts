@@ -41,7 +41,7 @@ describe("getRideById", () => {
   it("should return rides from db", async () => {
     db.all.resolves([ride]);
     const res = await getRideById({ params: { id: "1" } } as any);
-    expect(db.all.args[0]).deep.equal(["SELECT * FROM Rides WHERE rideID=?", []]);
+    expect(db.all.args[0]).deep.equal(["SELECT * FROM Rides WHERE rideID=?", ["1"]]);
     expect(res).deep.equal([ride]);
   });
 });

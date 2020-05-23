@@ -13,7 +13,7 @@ export const getRideById = async (req: Request) => {
       .required()
       .min(1)
   );
-  const rides = await all<RideEntry[]>("SELECT * FROM Rides WHERE rideID=?", []);
+  const rides = await all<RideEntry[]>("SELECT * FROM Rides WHERE rideID=?", [id]);
   if (rides.length === 0)
     throw createHttpError(404, "Could not find any rides", { error_code: "RIDES_NOT_FOUND_ERROR" });
   return rides;
