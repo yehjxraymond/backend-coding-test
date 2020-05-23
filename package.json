@@ -24,7 +24,9 @@
     "lint": "eslint . --ext js,ts,tsx",
     "lint:fix": "npm run lint -- --fix",
     "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.ts,src/**/*.test.ts -x .js,.ts,.tsx",
-    "pre-push": "npm-run-all -p lint test test:integration"
+    "pre-push": "npm-run-all -p lint test test:integration",
+    "swagger": "swagger-jsdoc -d swagger/definition.js -o swagger/swagger.json",
+    "swagger:server": "npm run swagger && docker run -p 8080:8080 -e SWAGGER_JSON=/swagger/swagger.json -v $(pwd)/swagger:/swagger swaggerapi/swagger-ui"
   },
   "types": "dist/ts",
   "dependencies": {
@@ -79,6 +81,7 @@
     "prettier": "1.19.1",
     "sinon": "9.0.2",
     "supertest": "4.0.2",
+    "swagger-jsdoc": "4.0.0",
     "ts-node": "8.10.1",
     "typescript": "3.7.4"
   }

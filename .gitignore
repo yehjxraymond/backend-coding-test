@@ -6,3 +6,4 @@ node_modules/
 .nyc_output/
 todo
 logs/
+swagger/swagger.json

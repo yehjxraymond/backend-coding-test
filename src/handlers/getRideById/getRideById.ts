@@ -5,6 +5,24 @@ import { handlerBoundary } from "../handlerBoundary";
 import { all } from "../../database";
 import { RideEntry } from "../../types";
 
+/**
+ * @swagger
+ *
+ * /rides/{id}:
+ *   get:
+ *     description: Get ride by ride ID
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         description: Ride ID
+ *     responses:
+ *       '200':
+ *         description: success
+ */
 export const getRideById = async (req: Request) => {
   const { id } = req.params;
   assert(

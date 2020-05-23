@@ -6,6 +6,24 @@ import { Ride } from "../../types";
 
 const PAGE_SIZE = 20;
 
+/**
+ * @swagger
+ *
+ * /rides:
+ *   get:
+ *     description: Get rides
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page to offset
+ *     responses:
+ *       '200':
+ *         description: success
+ */
 export const getRides = async (request: Request) => {
   if (request.query.page && isNaN(Number(request.query.page)))
     throw createHttpError(400, "page must be a number", { error_code: "VALIDATION_ERROR" });
