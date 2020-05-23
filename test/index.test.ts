@@ -98,7 +98,6 @@ describe("API tests", () => {
           expect(body.length).equal(5);
         });
     });
-    xit("should not be vulnerable to SQL injection (page)", () => {});
   });
 
   describe("GET /rides/{id}", () => {
@@ -160,7 +159,19 @@ describe("API tests", () => {
           });
         });
     });
-    xit("should not be vulnerable to SQL injection ({id})", () => {});
+    it("should not be vulnerable to SQL injection ({id})", async () => {
+      // SELECT * FROM Rides WHERE rideID=1 or 1=1
+      const offendingQuery = "1 or 1=1";
+      await insertRecord();
+      await insertRecord();
+      await request(express)
+        .get(`/rides/${offendingQuery}`)
+        .expect("Content-Type", /application\/json/)
+        .expect(res => {
+          expect(res.body).deep.equal({ error_code: "SERVER_ERROR" });
+        })
+        .expect(500);
+    });
   });
 
   describe("POST /rides", () => {
@@ -177,7 +188,26 @@ describe("API tests", () => {
           });
         });
     });
-    xit("should not be vulnerable to SQL injection (body)", () => {});
+    it("should not be vulnerable to SQL injection (body)", async () => {
+      // INSERT INTO Rides(startLat, startLong, endLat, endLong, riderName, driverName,
+      // driverVehicle) VALUES (0, 0, 0, 0, "a", "a", "a"), (1, 1, 1, 1, "b", "b", "b");
+      const injection = {
+        ...sampleEntry,
+        driverVehicle: `a"), (1, 1, 1, 1, "b", "b", "b`
+      };
+      await request(express)
+        .post("/rides")
+        .send(injection)
+        .expect("Content-Type", /application\/json/);
+      await request(express)
+        .get("/rides")
+        .expect("Content-Type", /application\/json/)
+        .expect(200)
+        .expect(res => {
+          const { body } = res;
+          expect(body.length).equal(1);
+        });
+    });
     it("should create a record successfully", async () => {
       await request(express)
         .post("/rides")
