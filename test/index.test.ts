@@ -1,8 +1,8 @@
 import request from "supertest";
 import { expect } from "chai";
 import { pick } from "lodash";
-// import sinon, { stub } from "sinon";
-// import { logger } from "../src/logger";
+import sinon, { stub } from "sinon";
+import { logger } from "../src/logger";
 import { initializeDb, flushDb } from "../src/database";
 import app from "../src/app";
 
@@ -35,11 +35,11 @@ const insertRecord = async () => {
 describe("API tests", () => {
   before(async () => {
     await initializeDb();
-    // stub(logger); // Silence logger
+    stub(logger); // Silence logger
   });
-  // after(() => {
-  //   sinon.restore();
-  // });
+  after(() => {
+    sinon.restore();
+  });
   beforeEach(async () => {
     await flushDb();
   });
