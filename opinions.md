@@ -75,4 +75,18 @@ CORS and Helmet are two low hanging fruits that helps protect the client (we are
 
 ## Code as Documentation
 
+Well-written code documents itself. A developer should strive to write simple modular code which describes what exactly he is trying to do. Good code reads like a prose without a need to describe it with another separate document.
+
+![Swagger API](./assets/swagger.png)
+
+
+In addition, developers hate to write and update documentation. As much as possible documentation should be generated from code itself. In this case, I've chosen to generate a Swagger API Documentation that not only a developer is able to read and understand what it is trying to do, a developer can play and interact with the API from the documentation itself!
+
+To set up the swagger API spec:
+
+```sh
+npm run swagger:server
+open http://localhost:8080
+```
+
 ## Load Testing
