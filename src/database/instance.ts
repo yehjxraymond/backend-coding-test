@@ -1,5 +1,5 @@
-import { verbose } from "sqlite3";
+import sqlite3, { verbose } from "sqlite3";
 
-const sqlite3 = verbose();
+verbose();
 
 export const db = new sqlite3.Database(":memory:");

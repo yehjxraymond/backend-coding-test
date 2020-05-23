@@ -79,7 +79,6 @@ Well-written code documents itself. A developer should strive to write simple mo
 
 ![Swagger API](./assets/swagger.png)
 
-
 In addition, developers hate to write and update documentation. As much as possible documentation should be generated from code itself. In this case, I've chosen to generate a Swagger API Documentation that not only a developer is able to read and understand what it is trying to do, a developer can play and interact with the API from the documentation itself!
 
 To set up the swagger API spec:
