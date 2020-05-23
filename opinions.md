@@ -88,4 +88,22 @@ npm run swagger:server
 open http://localhost:8080
 ```
 
-## Load Testing
+## Load Testing (Fuzzing vs Load Test on Dev Env)
+
+Load testing as a mean for fuzzing out potential errors in the logic under stress makes sense. However, the intention should not be to get an idea of how the application is performing. Depending on developer's machine's specifications, the load testing report varies largely and does not reflect how the production application will perform.
+
+Artillery has a plugin for just this type of testing, see https://github.com/artilleryio/artillery-plugin-fuzzer
+
+## Trapping Background Task
+
+Unix has a simple way to background an application by appending `&` to the script execution.
+
+To start and stop an application, one can use a trap to kill running application.
+
+Detailed documentation on how this can be done can be found https://spin.atomicobject.com/2017/08/24/start-stop-bash-background-process/
+
+## On "Hosting Documentation"
+
+The documentation can be written easily with a markdown file. On committing, it is hosted and rendered without the need for additional processing.
+
+To turn that into a webpage, github pages can be used.

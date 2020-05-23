@@ -1,0 +1,24 @@
+config:
+  target: "http://localhost:8010"
+  phases:
+    - duration: 30
+      arrivalRate: 100
+  defaults:
+    headers:
+      x-my-service-auth: "987401838271002188298567"
+scenarios:
+  - flow:
+      - post:
+          url: "/rides"
+          json:
+            startLat: 0
+            startLong: 0
+            endLat: 0
+            endLong: 0
+            riderName: "Rider Name"
+            driverName: "Driver Name"
+            driverVehicle: "Driver Vehicle"
+      - get:
+          url: "/rides"
+      - get:
+          url: "/rides/1"

@@ -45,6 +45,14 @@ npm run test:integration
 npm run lint
 ```
 
+#### Load Testing
+
+![Load Test Result](./assets/load-test.png)
+
+```sh
+npm run test:load
+```
+
 ### Development
 
 For hot reloading and faster development environment, run the following to start the dev server:
