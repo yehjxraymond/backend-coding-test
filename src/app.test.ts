@@ -1,5 +1,4 @@
-import { expect, use } from "chai";
-import chaiAsPromised from "chai-as-promised";
+import { expect } from "chai";
 import sinon from "sinon";
 import proxyquire from "proxyquire";
 
@@ -11,8 +10,6 @@ const appStub = {
 };
 
 const app = proxyquire("./app", { express: () => appStub });
-
-use(chaiAsPromised);
 
 describe("app", () => {
   it("setup the routes", async () => {
