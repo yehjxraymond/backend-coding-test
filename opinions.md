@@ -69,6 +69,10 @@ SonarQube has been configured for this project to show how the team can use it t
 
 The analysis is available publicly and can be accessed at https://sonarcloud.io/dashboard?id=yehjxraymond_backend-coding-test
 
+## Additional Security Measures
+
+CORS and Helmet are two low hanging fruits that helps protect the client (we are assuming web client). CORS helps to restrict access from other domain names while Helmet enforces several other protection such as using HTST, frameguard etc. More details about Helmet found [here](https://helmetjs.github.io/).
+
 ## Code as Documentation
 
 ## Load Testing
