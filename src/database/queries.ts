@@ -11,3 +11,7 @@ export const CREATE_TABLE_QUERY = `
     created DATETIME default CURRENT_TIMESTAMP
   )
 `;
+
+export const FLUSH_TABLE_QUERY = `
+  DELETE FROM Rides;
+`;
